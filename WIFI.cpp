@@ -2,7 +2,6 @@
 #include <ESP8266WiFi.h>
 #include "WIFI.h"
 
-extern String url;
 
 void WIFI_Init(void)
 {
@@ -13,31 +12,24 @@ void WIFI_Init(void)
     delay(500);
     Serial.print(".");
   }
- 
-  Serial.println("");
-  Serial.println("WiFi connected");
   Serial.print("My IP address: ");
   Serial.println(WiFi.localIP());
   Serial.println("--------------------WIFI_Init Done--------------------");
 }
 
-void WIFI_Send_Data(void)
-{
 
+void WIFI_Send_Data(float * adc)
+{
   WIFI_Connect_Tcp_Server();
-  float t = 3.14;
-  /* GET 메서드
-   * "?" 마크를 통해 URL의 끝을 알리면서, 데이터 표현의 시작점을 알린다.
-   */
-  url = "/macros/s/AKfycbxJDZ74RSEKnSelEl_8Azc_8vrTtsG3t2YwoWJM_STCUwsPElZUIJBIw2tRZKSe2QmlkQ/exec";
-  String data = "func=addData&val=" + String(t);
-  
-//  Serial.print("Requesting URL: ");
-//  Serial.println(url);
+
+  String data = "func=addData";
+  WIFI_Combine_Date(&data, adc);
+  Serial.println(data);
 
   //서버로 데이터 송신 - client.print()
   //GET 메서드 사용
-  client.println("GET " + url +"?"+ data + " HTTP/1.1");
+  //"?" 마크를 통해 URL의 끝을 알리면서, 데이터 표현의 시작점을 알린다.
+  client.println("GET " + String(path) +"?"+ data + " HTTP/1.1");
   client.println("Host: " + String(host));
   client.println("Connection: close");
   client.println();
@@ -56,6 +48,8 @@ void WIFI_Send_Data(void)
   //client.stop(); // close the connection
 }
 
+
+
 void WIFI_Connect_Tcp_Server(void)
 {
   //http 프로토콜을 사용하여 접근할 것이다.
@@ -69,4 +63,17 @@ void WIFI_Connect_Tcp_Server(void)
   {
     Serial.println("TCP connection established");
   }
+}
+
+
+
+void WIFI_Combine_Date(String * data, float * adc)
+{ 
+//  for(int i=0;i<8;i++)
+//  {
+//    *data = *data + "&" + "val" + String(i) + "="; // "&vali="
+//    *data = *data + String(adc[i]);
+//  }
+  *data = *data + "&val=" + String(adc[3]) + "&name=" + String(adc[5]);
+
 }
