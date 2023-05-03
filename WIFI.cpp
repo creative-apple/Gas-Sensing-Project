@@ -37,7 +37,7 @@ void WIFI_Send_Data(float * adc)
   delay(500);
   
   String section="header";
-  while(client.available())
+  while(client.available()) //서버로 부터 수신된게 있으면 출력
   {
     String line = client.readStringUntil('\r');
     Serial.print(line);
@@ -69,11 +69,11 @@ void WIFI_Connect_Tcp_Server(void)
 
 void WIFI_Combine_Date(String * data, float * adc)
 { 
-//  for(int i=0;i<8;i++)
-//  {
-//    *data = *data + "&" + "val" + String(i) + "="; // "&vali="
-//    *data = *data + String(adc[i]);
-//  }
-  *data = *data + "&val=" + String(adc[3]) + "&name=" + String(adc[5]);
+  for(int i=0;i<8;i++)
+  {
+    *data = *data + "&" + "val" + String(i) + "="; // "&vali="
+    *data = *data + String(adc[i]);
+  }
+//  *data = *data + "&val=" + String(adc[3]) + "&name=" + String(adc[5]);
 
 }
