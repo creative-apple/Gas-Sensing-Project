@@ -31,21 +31,4 @@ void ADC1115_Print_Data(float * adc)
   {
     Serial.printf("%f, ",adc[i]);
   }
-  //  Serial.print("AIN0: "); Serial.println(adc0);
-//  Serial.print("AIN0 Voltage : "); Serial.println(adc0*0.1875/1000);
-//  Serial.print("AIN1: "); Serial.println(adc1);
-//  Serial.print("AIN1 Voltage : "); Serial.println(adc1*0.1875/1000);
-//  Serial.print("AIN2: "); Serial.println(adc2);
-//  Serial.print("AIN2 Voltage : "); Serial.println(adc2*0.1875/1000);
-//  Serial.print("AIN3: "); Serial.println(adc3);
-//  Serial.print("AIN3 Voltage : "); Serial.println(adc3*0.1875/1000);
-//  Serial.print("AIN4: "); Serial.println(adc4);
-//  Serial.print("AIN4 Voltage : "); Serial.println(adc4*0.1875/1000);
-//  Serial.print("AIN5: "); Serial.println(adc5);
-//  Serial.print("AIN5 Voltage : "); Serial.println(adc5*0.1875/1000);
-//  Serial.print("AIN6: "); Serial.println(adc6);
-//  Serial.print("AIN6 Voltage : "); Serial.println(adc6*0.1875/1000);
-//  Serial.print("AIN7: "); Serial.println(adc7);
-//  Serial.print("AIN7 Voltage : "); Serial.println(adc7*0.1875/1000);
-//  Serial.println(" ");
 }
