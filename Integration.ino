@@ -27,7 +27,7 @@ void setup() {
 
 void loop()
 {
-//  ADC1115_Read_Data(adc);
-//  ADC1115_Print_Data(adc);
+  ADC1115_Read_Data(adc);
+  ADC1115_Print_Data(adc);
   WIFI_Send_Data(adc);
 }

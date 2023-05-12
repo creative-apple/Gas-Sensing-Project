@@ -75,5 +75,4 @@ void WIFI_Combine_Date(String * data, float * adc)
     *data = *data + String(adc[i]);
   }
 //  *data = *data + "&val=" + String(adc[3]) + "&name=" + String(adc[5]);
-
 }
